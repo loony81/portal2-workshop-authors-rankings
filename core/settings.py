@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'authors.apps.AuthorsConfig'
 ]
 
@@ -80,6 +81,13 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+CRONJOBS = [
+
+    ('*/2 * * * *', 'authors.cron.update_steamids'),
+    ('*/4 * * * *', 'authors.cron.update_author_table')
+]
 
 
 # Password validation
