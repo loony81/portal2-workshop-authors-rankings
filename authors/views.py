@@ -4,5 +4,5 @@ from .models import Author
 
 
 def index(request):
-    authors = Author.objects.all()
+    authors = Author.objects.order_by('-number_of_followers')
     return render(request, 'index.html', {'authors': authors})
