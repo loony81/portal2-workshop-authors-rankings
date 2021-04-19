@@ -29,26 +29,45 @@
             <th scope="col">#</th>
             <th scope="col"></th>
             <th scope="col">Author</th>
-            <th scope="col">Steam Level</th>
-            <th scope="col">Submissions</th>
             <th scope="col">Followers</th>
+            <th scope="col">Submissions</th>
             <th scope="col">Country</th>
         </tr>
         </thead>
         <tbody>
         {% for author in authors %}
         <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{forloop.counter0|add:authors.start_index}}</th>
             <td><img src="{{author.avatar}}"></td>
             <td><a href="{{author.profile_url}}">{{author.nicname}}</a></td>
-            <td>{{author.steam_level}}</td>
-            <td>{{author.workshop_submissions}}</td>
             <td>{{author.number_of_followers}}</td>
+            <td>{{author.workshop_submissions}}</td>
             <td>{{author.loc_country_code}}</td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
+    {% if authors.has_other_pages %}
+    <ul class="pagination justify-content-center">
+        {% if authors.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ authors.previous_page_number }}">«</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="">«</a></li>
+        {% endif %}
+        {% for i in authors.paginator.page_range %}
+        {% if authors.number == i %}
+        <li class="page-item active"><a class="page-link" href="#">{{ i }}<span class="sr-only"></span></a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if authors.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ authors.next_page_number }}">»</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="">»</a></li>
+        {% endif %}
+    </ul>
+    {% endif %}
 </div>
 
 

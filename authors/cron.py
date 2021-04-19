@@ -46,7 +46,7 @@ def update_author_table():
             # if something goes wrong with the request just skip it by setting the followers variable to 0
             followers = 0
         # if an author has at least one follower, extract additional info using the Steam api and add him to the database
-        if followers > 10:
+        if followers > 5:
             create_author(steamid, followers, submissions)
 
 
@@ -60,6 +60,6 @@ def create_author(steamid, followers, submissions):
             loc_country_code=author.get('loccountrycode', '-'),
             number_of_followers=followers,
             workshop_submissions=submissions
-        ).sa
+        )
     except:
         pass
