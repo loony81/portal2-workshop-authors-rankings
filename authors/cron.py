@@ -30,9 +30,10 @@ def update_author_table():
     # and make a request using the Steam API and BeautifulSoup to get all the necessary data about each author
     fhand = open(BASE_DIR / 'authors/steamids.txt', 'r')
     for steamid in fhand:
-        # first of all find out how many followers and submissions an author have
+        # first of all find out how many followers and Portal 2 map submissions an author have
         try:
-            html = urllib.request.urlopen('https://steamcommunity.com/profiles/' + steamid.replace('\n','') + '/myworkshopfiles', context=ctx).read()
+            # html = urllib.request.urlopen('https://steamcommunity.com/profiles/' + steamid.replace('\n','') + '/myworkshopfiles', context=ctx).read()
+            html = urllib.request.urlopen('https://steamcommunity.com/profiles/' + steamid.replace('\n', '') + '/myworkshopfiles?appid=620', context=ctx).read()
             soup = BeautifulSoup(html, 'html.parser')
             followers = int(soup.find_all('div', class_='followStat')[0].text)
             submissions = soup.find_all('div', class_='workshopBrowsePagingInfo')
@@ -45,8 +46,8 @@ def update_author_table():
         except:
             # if something goes wrong with the request just skip it by setting the followers variable to 0
             followers = 0
-        # if an author has at least one follower, extract additional info using the Steam api and add him to the database
-        if followers > 5:
+        # if an author has at least 5 followers and 1 submission related to Portal 2, extract additional info using the Steam api and add him to the database
+        if followers > 5 and submissions > 0:
             create_author(steamid, followers, submissions)
 
 
