@@ -47,6 +47,9 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <!--Pagination-->
+
     {% if authors.has_other_pages %}
     <ul class="pagination justify-content-center">
         {% if authors.has_previous %}
@@ -75,6 +78,8 @@
         {% endif %}
     </ul>
     {% endif %}
+
+    <!--end of Pagination-->
 </div>
 
 

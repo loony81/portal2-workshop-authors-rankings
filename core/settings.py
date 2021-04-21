@@ -91,7 +91,6 @@ DATABASES = {
 
 
 CRONJOBS = [
-
     ('0 23 * * *', 'authors.cron.update_steamids'),
     ('0 0 * * *', 'authors.cron.update_author_table')
 ]
