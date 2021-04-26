@@ -20,6 +20,8 @@ env = environ.Env(
 environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR specifies the location of the project's base directory on the server, it makes sure that the full path to a directory
+# or file inside the project is created correctly no matter on what os the server runs
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
