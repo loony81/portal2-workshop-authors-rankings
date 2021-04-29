@@ -30,30 +30,42 @@
             <th scope="col"></th>
             <th scope="col">Author</th>
             {% if order_by == '-number_of_followers' %}
-                <th scope="col"><a class="text-decoration-none" href="?order_by=number_of_followers">Followers&#9660;</a></th>
+                <th scope="col"><a class="text-decoration-none link-secondary" href="?order_by=number_of_followers">Followers&#9660;</a></th>
                 <th scope="col"><a class="text-decoration-none" href="?order_by=-workshop_submissions">Submissions&#9660;</a></th>
+                <th scope="col"><a class="text-decoration-none" href="?order_by=-coop_maps">Coop maps&#9660;</a></th>
             {% elif order_by == 'number_of_followers' %}
-                <th scope="col"><a class="text-decoration-none" href="?order_by=-number_of_followers">Followers&#9650;</a></th>
+                <th scope="col"><a class="text-decoration-none link-secondary" href="?order_by=-number_of_followers">Followers&#9650;</a></th>
                 <th scope="col"><a class="text-decoration-none" href="?order_by=-workshop_submissions">Submissions&#9660;</a></th>
+                <th scope="col"><a class="text-decoration-none" href="?order_by=-coop_maps">Coop maps&#9660;</a></th>
             {% elif order_by == '-workshop_submissions' %}
                 <th scope="col"><a class="text-decoration-none" href="?order_by=-number_of_followers">Followers&#9660;</a></th>
-                <th scope="col"><a class="text-decoration-none" href="?order_by=workshop_submissions">Submissions&#9650;</a></th>
+                <th scope="col"><a class="text-decoration-none link-secondary" href="?order_by=workshop_submissions">Submissions&#9660;</a></th>
+                <th scope="col"><a class="text-decoration-none" href="?order_by=-coop_maps">Coop maps&#9660;</a></th>
             {% elif order_by == 'workshop_submissions' %}
                 <th scope="col"><a class="text-decoration-none" href="?order_by=-number_of_followers">Followers&#9660;</a></th>
+                <th scope="col"><a class="text-decoration-none link-secondary" href="?order_by=-workshop_submissions">Submissions&#9650;</a></th>
+                <th scope="col"><a class="text-decoration-none" href="?order_by=-coop_maps">Coop maps&#9660;</a></th>
+            {% elif order_by == '-coop_maps' %}
+                <th scope="col"><a class="text-decoration-none" href="?order_by=-number_of_followers">Followers&#9660;</a></th>
+                <th scope="col"><a class="text-decoration-none" href="?order_by=workshop_submissions">Submissions&#9660;</a></th>
+                <th scope="col"><a class="text-decoration-none link-secondary" href="?order_by=coop_maps">Coop maps&#9660;</a></th>
+            {% elif order_by == 'coop_maps' %}
+                <th scope="col"><a class="text-decoration-none" href="?order_by=-number_of_followers">Followers&#9660;</a></th>
                 <th scope="col"><a class="text-decoration-none" href="?order_by=-workshop_submissions">Submissions&#9660;</a></th>
+                <th scope="col"><a class="text-decoration-none link-secondary" href="?order_by=-coop_maps">Coop maps&#9650;</a></th>
             {% endif %}
-            <th scope="col">Country</th>
+
         </tr>
         </thead>
         <tbody>
         {% for author in authors %}
         <tr>
             <th scope="row">{{forloop.counter0|add:authors.start_index}}</th>
-            <td><img src="{{author.avatar}}"></td>
+            <td><a href="{{author.profile_url}}"><img src="{{author.avatar}}"></a></td>
             <td><a href="{{author.profile_url}}">{{author.nicname}}</a></td>
             <td>{{author.number_of_followers}}</td>
             <td>{{author.workshop_submissions}}</td>
-            <td>{{author.loc_country_code}}</td>
+            <td>{{author.coop_maps}}</td>
         </tr>
         {% endfor %}
         </tbody>
