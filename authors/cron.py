@@ -5,7 +5,7 @@ import ssl
 import re
 from pathlib import Path
 from .utils.SteamGroup import steamgroup
-from .models import Author
+from .models import Author, Steamid
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,23 +21,32 @@ def make_request(url):
 
 
 
-def update_steamids():
-    # use the SteamGroup.py module to fetch the SteamID64's of all the Steam group members and save them to steamids.txt
-    members = steamgroup.get_steam_ids()
-    fhand = open(BASE_DIR / 'authors/steamids.txt', 'w')
-    for member in members:
-        fhand.write(str(member) + '\n')
-    fhand.close()
+def update_authors_steamid_table():
+    # make a backup before deleting everything
+    steamids = list(Steamid.objects.all())
+    # delete everything from the authors_steamid table before populating it again
+    Steamid.objects.all().delete()
+    try:
+        # use the SteamGroup.py module to fetch the SteamID64's of all the Steam group members and save them to authors_steamid table
+        members = steamgroup.get_steam_ids()
+        objects = [Steamid(steamid=member) for member in members]
+        Steamid.objects.bulk_create(objects)
+    except:
+        # in case something goes wrong populate it from backup
+        objects = [Steamid(steamid=item.steamid) for item in steamids]
+        Steamid.objects.bulk_create(objects)
 
 
 
-def update_author_table():
-    # remove everything from the Author table before populating it again
+def update_authors_author_table():
+    # remove everything from the authors_author table before populating it again
     Author.objects.all().delete()
-    # iterate over each line in steamids.txt file
+    # load all steamids into a list
+    steamids = list(Steamid.objects.all())
+    # iterate over each item in steamids
     # and make a request using the Steam API and BeautifulSoup to get all the necessary data about each author
-    fhand = open(BASE_DIR / 'authors/steamids.txt', 'r')
-    for steamid in fhand:
+    for item in steamids:
+        steamid = item.steamid
         # first of all find out how many followers and Portal 2 map submissions an author have
         try:
             soup = make_request('https://steamcommunity.com/profiles/' + steamid.replace('\n', '') + '/myworkshopfiles?appid=620')

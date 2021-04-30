@@ -9,3 +9,7 @@ class Author(models.Model):
     workshop_submissions = models.IntegerField()
     coop_maps = models.IntegerField()
 
+
+class Steamid(models.Model):
+    steamid = models.CharField(max_length=30)
+
