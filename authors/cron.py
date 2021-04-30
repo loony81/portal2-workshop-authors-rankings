@@ -5,7 +5,7 @@ import ssl
 import re
 from pathlib import Path
 from .utils.SteamGroup import steamgroup
-from .models import Author, Steamid
+from .models import Author, AuthorTemp, Steamid
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,8 +39,8 @@ def update_authors_steamid_table():
 
 
 def update_authors_author_table():
-    # remove everything from the authors_author table before populating it again
-    Author.objects.all().delete()
+    # remove everything from the AuthorTemp model before populating it again
+    AuthorTemp.objects.all().delete()
     # load all steamids into a list
     steamids = list(Steamid.objects.all())
     # iterate over each item in steamids
@@ -72,7 +72,19 @@ def update_authors_author_table():
             else:
                 avatar = avatar.replace('_medium', '')
             create_author(steamid, personaname, avatar, profile_url, followers, submissions)
-
+    else:
+        # after all the data has been collected and stored in the AuthorTemp model, update the Author model
+        Author.objects.all().delete()
+        authors_temp = AuthorTemp.objects.all()
+        authors = [Author(
+                nicname=item.nicname,
+                profile_url=item.profile_url,
+                avatar=item.avatar,
+                number_of_followers=item.number_of_followers,
+                workshop_submissions=item.workshop_submissions,
+                coop_maps=item.coop_maps
+            ) for item in authors_temp]
+        Author.objects.bulk_create(authors)
 
 
 def create_author(steamid, personaname, avatar, profile_url, followers, submissions):
@@ -85,7 +97,7 @@ def create_author(steamid, personaname, avatar, profile_url, followers, submissi
             coop_maps = int(numerical_characters[-1])
         else:
             coop_maps = 0
-        Author.objects.create(
+        AuthorTemp.objects.create(
             nicname=personaname,
             avatar=avatar,
             profile_url=profile_url,
