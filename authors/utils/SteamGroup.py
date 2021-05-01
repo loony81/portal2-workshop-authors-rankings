@@ -16,7 +16,7 @@ class SteamGroup:
     """
     This Python class fetches the SteamID64's of all the Steam group members. Use run() to fetch and print the ID's.
     """
-    XML_URL = 'https://steamcommunity.com/groups/portalmapping' + '/memberslistxml?xml=1' # Add your custom group URL here
+    XML_URL = ''
     XML_NEXT_PAGE = False
     XML_PAGE = 1
 
@@ -24,8 +24,8 @@ class SteamGroup:
 
     STEAM_IDS = []
 
-    def __init__(self):
-        pass
+    def __init__(self, group):
+        self.XML_URL = 'https://steamcommunity.com/groups/' + group + '/memberslistxml?xml=1' # Add your custom group URL here
 
     def get_steam_ids(self, page=XML_PAGE):
         """
@@ -83,4 +83,4 @@ class SteamGroup:
 
         return response.text
 
-steamgroup = SteamGroup()
+# steamgroup = SteamGroup()

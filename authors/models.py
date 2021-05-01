@@ -22,3 +22,7 @@ class AuthorTemp(models.Model):
 class Steamid(models.Model):
     steamid = models.CharField(max_length=30)
 
+
+class SteamGroupName(models.Model):
+    group_name = models.CharField(max_length=200)
+

@@ -1,11 +1,10 @@
-import requests
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
 import re
 from pathlib import Path
-from .utils.SteamGroup import steamgroup
-from .models import Author, AuthorTemp, Steamid
+from .utils.SteamGroup import SteamGroup
+from .models import Author, AuthorTemp, Steamid, SteamGroupName
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,17 +25,24 @@ def return_soup(url):
 
 def update_authors_steamid_table():
     # make a backup before deleting everything
-    steamids = list(Steamid.objects.all())
+    steamids_backup = list(Steamid.objects.all())
+    all_steamids = []
     # delete everything from the authors_steamid table before populating it again
     Steamid.objects.all().delete()
+    # get all groups from the authors_steamgroup table and iterate over them
+    steam_groups = SteamGroupName.objects.all()
     try:
-        # use the SteamGroup.py module to fetch the SteamID64's of all the Steam group members and save them to authors_steamid table
-        members = steamgroup.get_steam_ids()
-        objects = [Steamid(steamid=member) for member in members]
+        for group in steam_groups:
+            # use the SteamGroup.py module to fetch the SteamID64's of all the Steam group members
+            # and save them to authors_steamid table
+            steamgroup = SteamGroup(group.group_name)
+            all_steamids.extend(steamgroup.get_steam_ids())
+        all_steamids = list(set(all_steamids))  # remove duplicates
+        objects = [Steamid(steamid=steamid) for steamid in all_steamids]
         Steamid.objects.bulk_create(objects)
     except:
         # in case something goes wrong populate it from backup
-        objects = [Steamid(steamid=item.steamid) for item in steamids]
+        objects = [Steamid(steamid=item.steamid) for item in steamids_backup]
         Steamid.objects.bulk_create(objects)
 
 
