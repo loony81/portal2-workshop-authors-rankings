@@ -2,11 +2,9 @@ import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
 import re
-from pathlib import Path
 from .utils.SteamGroup import SteamGroup
-from .models import Author, AuthorTemp, Steamid, SteamGroupName
+from .models import Author, AuthorTemp, Steamid, NoGroupAuthor, SteamGroupName
 
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
@@ -26,7 +24,8 @@ def return_soup(url):
 def update_authors_steamid_table():
     # make a backup before deleting everything
     steamids_backup = list(Steamid.objects.all())
-    all_steamids = []
+    # first of all get SteamID64's of those authors who don't belong to any group
+    all_steamids = [item.steamid for item in NoGroupAuthor.objects.all()]
     # delete everything from the authors_steamid table before populating it again
     Steamid.objects.all().delete()
     # get all groups from the authors_steamgroup table and iterate over them
@@ -34,7 +33,7 @@ def update_authors_steamid_table():
     try:
         for group in steam_groups:
             # use the SteamGroup.py module to fetch the SteamID64's of all the Steam group members
-            # and save them to authors_steamid table
+            # and add them to all_steamids list
             steamgroup = SteamGroup(group.group_name)
             all_steamids.extend(steamgroup.get_steam_ids())
         all_steamids = list(set(all_steamids))  # remove duplicates

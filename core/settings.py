@@ -93,8 +93,8 @@ DATABASES = {
 
 
 CRONJOBS = [
-    ('22 22 * * *', 'authors.cron.update_authors_steamid_table'),
-    ('48 22 * * *', 'authors.cron.update_authors_authortemp_table')
+    # ('2 2 * * *', 'authors.cron.update_authors_steamid_table'),
+    ('5 2 * * *', 'authors.cron.update_authors_authortemp_table')
 ]
 
 

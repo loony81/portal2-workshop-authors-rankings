@@ -10,6 +10,10 @@ class Author(models.Model):
     coop_maps = models.IntegerField()
 
 
+class NoGroupAuthor(models.Model):
+    steamid = models.CharField(max_length=30)
+
+
 class AuthorTemp(models.Model):
     nicname = models.CharField(max_length=255)
     profile_url = models.CharField(max_length=2083)
