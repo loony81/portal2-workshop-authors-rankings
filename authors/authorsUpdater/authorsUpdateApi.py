@@ -2,8 +2,8 @@ import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
 import re
-from .utils.SteamGroup import SteamGroup
-from .models import Author, AuthorTemp, Steamid, NoGroupAuthor, SteamGroupName
+from authors.utils.SteamGroup import SteamGroup
+from authors.models import Author, AuthorTemp, Steamid, NoGroupAuthor, SteamGroupName
 
 
 ctx = ssl.create_default_context()
@@ -39,10 +39,12 @@ def update_authors_steamid_table():
         all_steamids = list(set(all_steamids))  # remove duplicates
         objects = [Steamid(steamid=steamid) for steamid in all_steamids]
         Steamid.objects.bulk_create(objects)
+        print('All steamids have been updated!')
     except:
         # in case something goes wrong populate it from backup
         objects = [Steamid(steamid=item.steamid) for item in steamids_backup]
         Steamid.objects.bulk_create(objects)
+        print('All steamids have been restored from backup!')
 
 
 
@@ -126,3 +128,4 @@ def update_authors_author_table():
         coop_maps=item.coop_maps
     ) for item in authors_temp]
     Author.objects.bulk_create(authors)
+    print('All the authors have been updated!')

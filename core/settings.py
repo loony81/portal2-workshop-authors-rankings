@@ -46,8 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_crontab',
-    'authors'
+    'authors.apps.AuthorsConfig'
 ]
 
 MIDDLEWARE = [
@@ -91,11 +90,6 @@ DATABASES = {
     }
 }
 
-
-CRONJOBS = [
-    # ('2 2 * * *', 'authors.cron.update_authors_steamid_table'),
-    ('5 2 * * *', 'authors.cron.update_authors_authortemp_table')
-]
 
 
 # Password validation
