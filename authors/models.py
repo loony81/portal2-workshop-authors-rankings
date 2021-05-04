@@ -30,3 +30,7 @@ class Steamid(models.Model):
 class SteamGroupName(models.Model):
     group_name = models.CharField(max_length=200)
 
+
+class UpdateDate(models.Model):
+    model_name = models.CharField(max_length=20)
+    timestamp = models.DateTimeField()

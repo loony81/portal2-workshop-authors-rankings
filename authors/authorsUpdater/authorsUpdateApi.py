@@ -2,8 +2,9 @@ import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
 import re
+from datetime import datetime
 from authors.utils.SteamGroup import SteamGroup
-from authors.models import Author, AuthorTemp, Steamid, NoGroupAuthor, SteamGroupName
+from authors.models import Author, AuthorTemp, Steamid, NoGroupAuthor, SteamGroupName, UpdateDate
 
 
 ctx = ssl.create_default_context()
@@ -39,7 +40,8 @@ def update_authors_steamid_table():
         all_steamids = list(set(all_steamids))  # remove duplicates
         objects = [Steamid(steamid=steamid) for steamid in all_steamids]
         Steamid.objects.bulk_create(objects)
-        print('All steamids have been updated!')
+        UpdateDate.objects.create(model_name='Steamid', timestamp=datetime.utcnow())
+        print('All steamids have been successfully updated!')
     except:
         # in case something goes wrong populate it from backup
         objects = [Steamid(steamid=item.steamid) for item in steamids_backup]
@@ -128,4 +130,5 @@ def update_authors_author_table():
         coop_maps=item.coop_maps
     ) for item in authors_temp]
     Author.objects.bulk_create(authors)
-    print('All the authors have been updated!')
+    UpdateDate.objects.create(model_name='Author', timestamp=datetime.utcnow())
+    print('All the authors have been successfully updated!')
