@@ -11,13 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import environ
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-# reading .env file
-environ.Env.read_env()
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR specifies the location of the project's base directory on the server, it makes sure that the full path to a directory
@@ -29,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = True
 
-ALLOWED_HOSTS = ['10.42.0.1', '127.0.0.1']
+ALLOWED_HOSTS = ['10.42.0.1', '127.0.0.1', 'portal2-workshop-authors.herokuapp.com/']
 
 
 # Application definition
