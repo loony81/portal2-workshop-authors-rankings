@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'daob3po89db18o',
-        'HOST': 'ec2-52-0-114-209.compute-1.amazonaws.com',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('PG_NAME'),
+        'HOST': os.environ.get('PG_HOST'),
         'PORT': 5432,
         'USER': os.environ.get('PG_USER'),
         'PASSWORD': os.environ.get('PG_PASSWORD')
