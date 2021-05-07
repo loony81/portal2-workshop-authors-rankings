@@ -6,6 +6,6 @@ from .authorsUpdateApi import update_authors_steamid_table, update_authors_autho
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(update_authors_steamid_table, 'date', run_date=datetime(2021, 5, 7, 16, 4, 5), id='update_steamids_001', replace_existing=True)
-    # scheduler.add_job(update_authors_authortemp_table, 'cron', day_of_week='3', hour=21, minute=5, replace_existing=True)
+    scheduler.add_job(update_authors_steamid_table, 'date', run_date=datetime(2021, 5, 7, 16, 20, 5), id='update_steamids_001', replace_existing=True)
+    scheduler.add_job(update_authors_authortemp_table, 'date', run_date=datetime(2021, 5, 7, 16, 25, 5), replace_existing=True)
     scheduler.start()
