@@ -41,7 +41,10 @@ def update_authors_steamid_table():
         all_steamids = list(set(all_steamids))  # remove duplicates
         objects = [Steamid(steamid=steamid) for steamid in all_steamids]
         Steamid.objects.bulk_create(objects)
-        UpdateDate.objects.create(model_name='Steamid', timestamp=datetime.utcnow())
+        UpdateDate.objects.update_or_create(model_name='Steamid', defaults={
+            'model_name': 'Steamid',
+            'timestamp': datetime.utcnow()
+        })
         print('All steamids have been successfully updated!')
     except:
         print('The steamids update has failed!')
@@ -134,7 +137,10 @@ def update_authors_author_table():
             coop_maps=item.coop_maps
         ) for item in authors_temp]
         Author.objects.bulk_create(authors)
-        UpdateDate.objects.create(model_name='Author', timestamp=datetime.utcnow())
+        UpdateDate.objects.update_or_create(model_name='Author', defaults={
+            'model_name': 'Author',
+            'timestamp': datetime.utcnow()
+        })
         print('All the authors have been successfully updated!')
     except:
         # in case something goes wrong restore the Author model from backup
