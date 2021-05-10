@@ -56,6 +56,7 @@ def update_authors_authortemp_table():
     # load all steamids into a list
     steamids = list(Steamid.objects.all())
     if len(steamids) > 0:
+        print('Authors update has started ...')
         # remove everything from the AuthorTemp model before populating it again
         AuthorTemp.objects.all().delete()
         # iterate over each item in steamids

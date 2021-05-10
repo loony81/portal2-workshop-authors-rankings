@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Author
 
@@ -22,3 +23,7 @@ def index(request):
         authors = paginator.page(paginator.num_pages)
 
     return render(request, 'index.html', {'authors': authors, 'order_by': order_by})
+
+
+def keepalive(request):
+    return HttpResponse(headers={'Status': 'OK'})
