@@ -28,7 +28,6 @@ def purge_steamids():
 
 
 def update_authors_steamid_table():
-    purge_steamids()
     # first of all get SteamID64's of those authors who don't belong to any group
     all_steamids = [item.steamid for item in NoGroupAuthor.objects.all()]
     # get all groups from the authors_steamgroup table and iterate over them
