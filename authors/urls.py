@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('keepawake/', views.keepalive)
+    path('keepawake/', views.keepawake)
 ]
