@@ -25,5 +25,5 @@ def index(request):
     return render(request, 'index.html', {'authors': authors, 'order_by': order_by})
 
 
-def keepalive(request):
+def keepawake(request):
     return HttpResponse(headers={'Status': 'OK'})
