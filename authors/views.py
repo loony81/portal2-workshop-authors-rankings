@@ -35,6 +35,7 @@ def index(request):
                     # if there are, then get all of them and recalculate the position
                     authors_with_the_same_number_of_followers = Author.objects.filter(number_of_followers=author.number_of_followers).order_by(order_by)
                     for i in range(same_number_of_followers):
+                        print(authors_with_the_same_number_of_followers[i].nicname)
                         if authors_with_the_same_number_of_followers[i].nicname == author.nicname:
                             break
                         position += 1
@@ -43,7 +44,6 @@ def index(request):
                     page = int(page)
                 else:
                     page = int(page) + 1
-                print(position, page, author.nicname)
                 # anchor will allow the page to start at a certain point so that the author's position is inside the viewport
                 anchor = author.nicname
             else:
