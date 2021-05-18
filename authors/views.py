@@ -33,7 +33,7 @@ def index(request):
                 same_number_of_followers = Author.objects.filter(number_of_followers=author.number_of_followers).count()
                 if same_number_of_followers > 1:
                     # if there are, then get all of them and recalculate the position
-                    authors_with_the_same_number_of_followers = Author.objects.filter(number_of_followers=author.number_of_followers).order_by(order_by)
+                    authors_with_the_same_number_of_followers = Author.objects.filter(number_of_followers=author.number_of_followers)
                     for i in range(same_number_of_followers):
                         print(authors_with_the_same_number_of_followers[i].nicname)
                         if authors_with_the_same_number_of_followers[i].nicname == author.nicname:
