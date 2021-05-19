@@ -13,7 +13,7 @@ def index(request):
     # by default when extracting the authors from the db sort them by the number_of_followers column in descending order
     if not order_by:
         order_by = '-number_of_followers'
-    authors_list = Author.objects.order_by(order_by)
+    authors_list = Author.objects.order_by(order_by, 'id')
 
     # set the paginator to display 20 authors per page
     items_per_page = 20
@@ -29,8 +29,10 @@ def index(request):
                 # get him and find out his position in the ranking
                 author = Author.objects.get(nicname=search)
                 position = Author.objects.filter(number_of_followers__gt=author.number_of_followers).count()+1
+                print('position before:', position)
                 # there could be other authors with the same number of followers
                 same_number_of_followers = Author.objects.filter(number_of_followers=author.number_of_followers).count()
+                print('same number of followers:', same_number_of_followers)
                 if same_number_of_followers > 1:
                     # if there are, then get all of them and recalculate the position
                     authors_with_the_same_number_of_followers = Author.objects.filter(number_of_followers=author.number_of_followers).order_by('id')
@@ -39,6 +41,7 @@ def index(request):
                         if authors_with_the_same_number_of_followers[i].nicname == author.nicname:
                             break
                         position += 1
+                print('position after:', position)
                 page = position / items_per_page
                 if page.is_integer():
                     page = int(page)
