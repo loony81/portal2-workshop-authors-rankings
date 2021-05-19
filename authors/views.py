@@ -55,6 +55,9 @@ def index(request):
             else:
                 page = 1
                 msg = 'Sorry, no author by that name'
+        else:
+            page = 1
+            msg = 'Sorry, no author by that name'
     else:
         page = request.GET.get('page', 1)
 
