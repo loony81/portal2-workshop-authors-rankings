@@ -9,9 +9,15 @@ class Author(models.Model):
     workshop_submissions = models.IntegerField()
     coop_maps = models.IntegerField()
 
+    def __str__(self):
+        return self.nicname
+
 
 class NoGroupAuthor(models.Model):
     steamid = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.steamid
 
 
 class AuthorTemp(models.Model):
@@ -30,7 +36,13 @@ class Steamid(models.Model):
 class SteamGroupName(models.Model):
     group_name = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.group_name
+
 
 class UpdateDate(models.Model):
     model_name = models.CharField(max_length=20)
     timestamp = models.DateTimeField()
+
+    def __str__(self):
+        return self.model_name
