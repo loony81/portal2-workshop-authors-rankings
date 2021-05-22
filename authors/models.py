@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Author(models.Model):
-    nicname = models.CharField(max_length=255)
+    nicname = models.CharField(max_length=255, help_text="Enter the author's Steam profile name")
     profile_url = models.CharField(max_length=2083)
     avatar = models.CharField(max_length=2083)
     number_of_followers = models.IntegerField()

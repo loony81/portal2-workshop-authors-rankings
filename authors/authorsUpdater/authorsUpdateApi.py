@@ -45,7 +45,7 @@ def update_authors_steamid_table():
             'model_name': 'Steamid',
             'timestamp': datetime.utcnow()
         })
-        print(f'All steamids have been successfully updated! Fetched {len(list(Steamid.objects.all()))} steamids')
+        print(f'All steamids have been successfully updated! Fetched {Steamid.objects.count()} steamids')
     except:
         print('The steamids update has failed!')
         purge_steamids()
@@ -120,7 +120,7 @@ def create_author(personaname, avatar, profile_url, followers, submissions, coop
             coop_maps=coop_maps
         )
     except:
-        print('Failed to create an author')
+        print('Failed to create author')
 
 
 def update_authors_author_table():
