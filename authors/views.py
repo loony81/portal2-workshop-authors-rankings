@@ -42,7 +42,7 @@ def index(request):
     paginator = Paginator(authors_list, items_per_page)
     # check if the form was submitted
     if request.GET.get('search'):
-        form = AuthorNameForm(request.GET)
+        form = AuthorNameForm(request.GET) # bind the form
         if form.is_valid():
             name = form.cleaned_data['search']
             # check if author exists in the database
