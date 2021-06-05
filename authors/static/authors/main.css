@@ -1,0 +1,31 @@
+body {
+    padding-top: 64px;
+}
+
+table tr {
+    font-size: .8rem;
+}
+
+
+thead tr:nth-child(1) th{
+    position: sticky;
+    top: 66px;
+    z-index: 10;
+    border-bottom: none;
+  }
+
+thead tr:nth-child(1) th:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: -1px;
+    border-bottom: 1px solid black;
+  }
+
+@media screen only and (max-width:768px){
+
+}
+
+
+
