@@ -16,8 +16,8 @@
     <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Portal_2_Official_Logo.png" alt="" height="40"
-                     class="d-inline-block align-text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Portal_2_Official_Logo.png" alt="" height="30"
+                     class="d-inline-block align-text-center d-none d-md-inline-block d-lg-inline-block">
                 Workshop Authors Rankings
             </span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
         </div>
     </nav>
     {% if message %}
-    <div class="alert alert-danger alert-dismissible fade show small" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show small mb-0" role="alert">
         {{ message }}
         <button type="button" class="btn-close small" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

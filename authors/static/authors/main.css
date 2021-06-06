@@ -1,5 +1,5 @@
 body {
-    padding-top: 64px;
+    padding-top: 54px;
 }
 
 table tr {
@@ -9,10 +9,10 @@ table tr {
 
 thead tr:nth-child(1) th{
     position: sticky;
-    top: 66px;
+    top: 56px;
     z-index: 10;
     border-bottom: none;
-  }
+}
 
 thead tr:nth-child(1) th:after {
     content: "";
@@ -21,10 +21,6 @@ thead tr:nth-child(1) th:after {
     width: 100%;
     bottom: -1px;
     border-bottom: 1px solid black;
-  }
-
-@media screen only and (max-width:768px){
-
 }
 
 
