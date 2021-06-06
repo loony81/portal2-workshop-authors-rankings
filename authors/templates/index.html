@@ -16,9 +16,11 @@
     <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">
+                <a href="?page=1" class="text-dark text-decoration-none">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Portal_2_Official_Logo.png" alt="" height="30"
                      class="d-inline-block align-text-center d-none d-md-inline-block d-lg-inline-block">
                 Workshop Authors Rankings
+                </a>
             </span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -82,7 +84,7 @@
         <tbody>
         {% for author in authors %}
         {% if anchor == author.nicname %}
-            <tr id="start" class="table-active">
+            <tr id="start" class="table-active" >
         {% else %}
             <tr>
         {% endif %}
@@ -143,6 +145,22 @@
 {% if anchor %}
 <script type='text/javascript'>
     window.onload = ()=> window.location = '#start';
+    window.setTimeout(() => {
+        // find out if the anchor tag is near the bottom of the page
+        const start = document.getElementById('start')
+        if(!isNearBottom(start)){
+            // if it is not near the bottom, then scroll 85px up
+            window.scrollTo(window.pageXOffset, window.pageYOffset - 100);
+        }
+    }, 500);
+
+    function isNearBottom(element) {
+        const rect = element.getBoundingClientRect();
+        if (window.innerHeight - element.getBoundingClientRect().bottom < 200){
+          return true;
+        }
+        return false;
+    }
 </script>
 {% endif %}
 <!-- Option 2: Separate Popper and Bootstrap JS -->
