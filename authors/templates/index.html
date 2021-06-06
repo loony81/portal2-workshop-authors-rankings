@@ -102,27 +102,27 @@
     {% if authors.has_other_pages %}
     <ul class="pagination justify-content-center">
 
-        {% if authors.number|add:'-4' > 1 and authors.number|add:'-4' != 2 %}
+        {% if authors.number|add:'-2' > 1 and authors.number|add:'-2' != 2 %}
         <li class="page-item"><a class="page-link" href="?page=1&order_by={{order_by}}">1</a></li>
-        <li class="page-item"><a class="page-link" href="?page={{ authors.number|add:'-5' }}&order_by={{order_by}}">&hellip;</a></li>
-        {% elif authors.number|add:'-4' == 2 %}
+        <li class="page-item"><a class="page-link" href="?page={{ authors.number|add:'-3' }}&order_by={{order_by}}">&hellip;</a></li>
+        {% elif authors.number|add:'-2' == 2 %}
             <li class="page-item"><a class="page-link" href="?page=1&order_by={{order_by}}">1</a></li>
         {% endif %}
 
 
         {% for i in authors.paginator.page_range %}
         {% if authors.number == i %}
-        <li class="page-item active"><a class="page-link" href="&order_by={{order_by}}">{{ i }}<span class="sr-only"></span></a></li>
-        {% elif i > authors.number|add:'-5' and i < authors.number|add:'5' %}
+        <li class="page-item active disabled"><a class="page-link" href="&order_by={{order_by}}">{{ i }}<span class="sr-only"></span></a></li>
+        {% elif i > authors.number|add:'-3' and i < authors.number|add:'3' %}
         <li class="page-item"><a class="page-link" href="?page={{ i }}&order_by={{order_by}}">{{ i }}</a></li>
         {% endif %}
         {% endfor %}
 
-        {% if authors.paginator.num_pages > authors.number|add:'4' %}
-            {% if authors.number|add:'4' == authors.paginator.num_pages|add:'-1'%}
+        {% if authors.paginator.num_pages > authors.number|add:'2' %}
+            {% if authors.number|add:'2' == authors.paginator.num_pages|add:'-1'%}
                 <li class="page-item"><a class="page-link" href="?page={{ authors.paginator.num_pages }}&order_by={{order_by}}">{{ authors.paginator.num_pages }}</a></li>
             {% else %}
-                <li class="page-item"><a class="page-link" href="?page={{ authors.number|add:'5' }}&order_by={{order_by}}">&hellip;</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ authors.number|add:'3' }}&order_by={{order_by}}">&hellip;</a></li>
                 <li class="page-item"><a class="page-link" href="?page={{ authors.paginator.num_pages }}&order_by={{order_by}}">{{ authors.paginator.num_pages }}</a></li>
             {% endif %}
         {% endif %}
