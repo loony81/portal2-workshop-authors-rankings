@@ -47,7 +47,13 @@ def index(request):
             name = form.cleaned_data['search']
             # check if author exists in the database
             if Author.objects.filter(nicname=name).exists():
-                author = Author.objects.get(nicname=name)
+                # how many authors with the same name?
+                number_of_authors = Author.objects.filter(nicname=name).count()
+                if number_of_authors > 1:
+                    # if there are more than one author with the same name, get the one with the most number of followers
+                    author = Author.objects.filter(nicname=name).order_by('-number_of_followers').first()
+                else:
+                    author = Author.objects.get(nicname=name)
                 # find out his position in the ranking and the page
                 page = calculate_page(author)
                 # anchor will allow the page to start at a certain point so that the author's position is inside the viewport
