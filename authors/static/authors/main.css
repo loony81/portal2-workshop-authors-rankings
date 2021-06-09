@@ -6,7 +6,6 @@ table tr {
     font-size: .8rem;
 }
 
-
 thead tr:nth-child(1) th{
     position: sticky;
     top: 56px;
@@ -21,4 +20,12 @@ thead tr:nth-child(1) th:after {
     width: 100%;
     bottom: -1px;
     border-bottom: 1px solid black;
+}
+
+.last-updated {
+    position:fixed;
+    top:38px;
+    left:0;
+    padding-left: 12px;
+    z-index: 2000;
 }

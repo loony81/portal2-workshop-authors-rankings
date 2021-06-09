@@ -13,6 +13,7 @@
     <title>Portal 2 Workshop Authors Rankings</title>
 </head>
 <body>
+<p class="text-muted mb-0 fw-light last-updated"><small><small><small>Last updated on {{ last_updated.date }}</small></small></small></p>
     <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">
@@ -27,6 +28,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0"></ul>
+
                 <form>
                     <div class="input-group input-group-sm">
                         {{ form }}
@@ -47,7 +49,7 @@
         <button type="button" class="btn-close small" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endif %}
-    <table class="table table-light table-sm table-hover align-middle">
+    <table class="table table-light table-sm table-hover align-middle mb-0">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -98,7 +100,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    <h6 class="text-muted mb-0 fw-light text-center"><small><small>Showing {{ authors.start_index }}-{{ authors.end_index }} of {{ authors.paginator.count }} entries</small></small></h6>
     <!--Pagination-->
 
     {% if authors.has_other_pages %}

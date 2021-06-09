@@ -44,5 +44,8 @@ class UpdateDate(models.Model):
     model_name = models.CharField(max_length=20)
     timestamp = models.DateTimeField()
 
+    def date(self):
+        return self.timestamp.strftime('%b %d, %Y')
+
     def __str__(self):
         return self.model_name

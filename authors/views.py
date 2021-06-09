@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Author
+from .models import Author, UpdateDate
 from .forms import AuthorNameForm
 
 
 # set the paginator to display 20 authors per page
 items_per_page = 20
+last_updated = UpdateDate.objects.get(model_name='Author')
 
 def calculate_page(author):
     position = Author.objects.filter(number_of_followers__gt=author.number_of_followers).count() + 1
@@ -82,7 +83,8 @@ def index(request):
         'order_by': order_by,
         'form': form,
         'message': msg,
-        'anchor': anchor
+        'anchor': anchor,
+        'last_updated': last_updated
     }
     return render(request, 'index.html', context)
 
