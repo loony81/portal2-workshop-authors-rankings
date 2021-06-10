@@ -1,6 +1,4 @@
 # Portal 2 Workshop Authors Rankings
-A single page web app that shows Portal 2 Workshop authors rankings. The rankings can be sorted by the number of followers or map submissions. Very useful for those who play Portal 2 custom maps.
+A single page web app that lists the members of several Steam groups related to Portal 2 custom map development, such as ThinkingWithPortals Mapping, P2LC and others. Authors are ranked by the number of followers by default, but can also be ranked by the number of submitted workshop items and the number of Portal 2 cooperative maps.
 
-The backend is built with Django 3.2 and uses the Steam API and BeautifulSoup to collect authors' data from several Steam groups related to Portal 2 custom map development. The collected data is stored in a PostgreSQL database and is updated every 24 hours by using the django-crontab package.
-
-Bootstrap and [Bootstrap Table](https://bootstrap-table.com/) are used for frontend.
+The backend is built with Django 3.2 and uses the Steam API and BeautifulSoup to collect authors' data. The collected data is stored in a PostgreSQL database and is updated once a week by using [APScheduler](https://apscheduler.readthedocs.io/en/3.0/). Bootstrap is used for frontend.
