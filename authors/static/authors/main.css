@@ -1,5 +1,18 @@
+html, body {
+  height: 100%;
+}
+
 body {
+    display: flex;
+    flex-direction: column;
     padding-top: 54px;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
 }
 
 table tr {
@@ -40,6 +53,7 @@ p.show-items {
 btn:focus, a:focus {
     outline: none;
 }
+
 .navbar-toggler:focus {
      outline: none !important;
      box-shadow: none;
