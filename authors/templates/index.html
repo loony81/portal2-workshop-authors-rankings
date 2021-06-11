@@ -14,16 +14,17 @@
 </head>
 <body>
 <p class="text-muted mb-0 fw-light last-updated"><small><small><small>Last updated on {{ last_updated.date }}</small></small></small></p>
+<p class="mb-0 fw-light show-items d-none d-md-block d-lg-block"><small><small><small>Showing {{ authors.start_index }}-{{ authors.end_index }} of {{ authors.paginator.count }} entries</small></small></small></p>
     <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
+        <div class="container-fluid  mt-1">
             <span class="navbar-brand mb-0 h1">
                 <a href="?page=1" class="text-dark text-decoration-none">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Portal_2_Official_Logo.png" alt="" height="30"
-                     class="d-inline-block align-text-center d-none d-md-inline-block d-lg-inline-block">
+                     class="d-inline-block align-text-center d-none d-md-inline-block d-lg-inline-block pb-1">
                 Workshop Authors Rankings
                 </a>
             </span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0 p-0 pt-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -49,7 +50,7 @@
         <button type="button" class="btn-close small" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endif %}
-    <table class="table table-light table-sm table-hover align-middle text-center mb-0">
+    <table class="table table-light table-sm table-hover align-middle text-center">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -100,7 +101,7 @@
         {% endfor %}
         </tbody>
     </table>
-    <h6 class="text-muted mb-0 fw-light text-center"><small><small>Showing {{ authors.start_index }}-{{ authors.end_index }} of {{ authors.paginator.count }} entries</small></small></h6>
+
     <!--Pagination-->
 
     {% if authors.has_other_pages %}
@@ -160,7 +161,7 @@
 
     function isNearBottom(element) {
         const rect = element.getBoundingClientRect();
-        if (window.innerHeight - element.getBoundingClientRect().bottom < 200){
+        if (window.innerHeight - element.getBoundingClientRect().bottom < 140){
           return true;
         }
         return false;
