@@ -37,7 +37,6 @@ def calculate_page(author):
         page = int(page)
     else:
         page = int(page) + 1
-    print(position)
     return page
 
 
@@ -82,6 +81,7 @@ def index(request):
         authors_list = Author.objects.order_by(order_by, 'id')
     else:
         authors_list = Author.objects.order_by(order_by, '-number_of_followers')
+    print(authors_list.explain())
     paginator = Paginator(authors_list, items_per_page)
 
     try:
