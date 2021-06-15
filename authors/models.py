@@ -9,6 +9,11 @@ class Author(models.Model):
     workshop_submissions = models.IntegerField()
     coop_maps = models.IntegerField()
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['nicname', '-number_of_followers']),
+        ]
+
     def __str__(self):
         return self.nicname
 
