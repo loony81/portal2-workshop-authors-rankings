@@ -15,6 +15,12 @@ body {
   flex-shrink: 0;
 }
 
+.maincontent {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right:auto;
+}
+
 table tr {
     font-size: .8rem;
 }
@@ -36,7 +42,7 @@ thead tr:nth-child(1) th:after {
 }
 
 p.last-updated {
-    position:fixed;
+    position:absolute;
     top: -6px;
     right: 10px;
     padding-left: 12px;
@@ -44,7 +50,7 @@ p.last-updated {
 }
 
 p.show-items {
-    position:fixed;
+    position:absolute;
     top: 42px;
     left: 12px;
     z-index: 1040;
@@ -54,7 +60,19 @@ btn:focus, a:focus {
     outline: none;
 }
 
+.navbar-fixed-width {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right:auto;
+}
+
 .navbar-toggler:focus {
      outline: none !important;
      box-shadow: none;
 }
+
+
+
+
+
+
