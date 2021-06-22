@@ -5,20 +5,20 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    padding-top: 54px;
+    padding-top: 3.3rem;
 }
 
 .content {
-  flex: 1 0 auto;
+    flex: 1 0 auto;
 }
+
 .footer {
-  flex-shrink: 0;
+    flex-shrink: 0;
 }
 
 .maincontent {
     max-width: 1140px;
-    margin-left: auto;
-    margin-right:auto;
+    margin: auto;
 }
 
 table tr {
@@ -27,7 +27,7 @@ table tr {
 
 thead tr:nth-child(1) th{
     position: sticky;
-    top: 54px;
+    top: 3.3rem;
     z-index: 10;
     border-bottom: none;
 }
@@ -43,16 +43,16 @@ thead tr:nth-child(1) th:after {
 
 p.last-updated {
     position:absolute;
-    top: -6px;
-    right: 10px;
-    padding-left: 12px;
+    top: -0.4rem;
+    right: 0.6rem;
+    padding-left: 0.8rem;
     z-index: 2000;
 }
 
 p.show-items {
     position:absolute;
-    top: 42px;
-    left: 12px;
+    top: 2.6rem;
+    left: 0.8rem;
     z-index: 1040;
 }
 
@@ -62,15 +62,24 @@ btn:focus, a:focus {
 
 .navbar-fixed-width {
     max-width: 1140px;
-    margin-left: auto;
-    margin-right:auto;
+    margin: auto;
 }
 
 .navbar-toggler:focus {
-     outline: none !important;
-     box-shadow: none;
+    outline: none !important;
+    box-shadow: none;
 }
 
+#alert {
+	 margin-top: 0.4rem;
+	 margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+	#alert {
+	    margin-top: 0;
+	}
+}
 
 
 
