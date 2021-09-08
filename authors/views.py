@@ -7,8 +7,11 @@ from .forms import AuthorNameForm
 
 # set the paginator to display 20 authors per page
 items_per_page = 20
-last_updated = UpdateDate.objects.get(model_name='Author')
-
+# last_updated = UpdateDate.objects.get(model_name='Author')
+try:
+    last_updated = UpdateDate.objects.get(model_name='Author')
+except UpdateDate.DoesNotExist:
+    last_updated = None
 # to get the position when authors are ranked by the number of followers
 # def calculate_page(author):
 #     position = Author.objects.filter(number_of_followers__gt=author.number_of_followers).count() + 1
