@@ -112,8 +112,8 @@
             <tr>
         {% endif %}
             <th scope="row">{{forloop.counter0|add:authors.start_index}}</th>
-            <td><a href="{{author.profile_url}}"><img src="{{author.avatar}}"></a></td>
-            <td><a href="{{author.profile_url}}">{{author.nicname}}</a></td>
+            <td><a href="{{author.profile_url}} target='_blank'"><img src="{{author.avatar}}"></a></td>
+            <td><a href="{{author.profile_url}}" target='_blank'>{{author.nicname}}</a></td>
             <td>{{author.number_of_followers}}</td>
             <td>{{author.workshop_submissions}}</td>
             <td>{{author.coop_maps}}</td>
