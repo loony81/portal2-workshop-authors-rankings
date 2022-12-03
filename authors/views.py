@@ -9,7 +9,7 @@ from .forms import AuthorNameForm
 items_per_page = 20
 # last_updated = UpdateDate.objects.get(model_name='Author')
 try:
-    last_updated = UpdateDate.objects.get(model_name='Steamid')
+    last_updated = UpdateDate.objects.get(model_name='Author')
 except UpdateDate.DoesNotExist:
     last_updated = None
 # to get the position when authors are ranked by the number of followers
