@@ -81,9 +81,9 @@ def update_authors_authortemp_table():
             else:
                 # if something goes wrong with the request just skip it by setting the followers variable to 0
                 followers = 0
-            # if an author has at least 5 followers and 1 submission related to Portal 2, extract his personaname, avatar, profile_url
+            # if an author has at least 10 followers and 1 submission related to Portal 2, extract his personaname, avatar, profile_url
             # and then make another request to find out how many coop maps he has and add him to the database
-            if followers > 5 and submissions > 0:
+            if followers > 10 and submissions > 0:
                 personaname = soup.select_one('#HeaderUserInfoName a').text
                 profile_url = soup.select_one('#HeaderUserInfoName a')['href']
                 avatar = soup.select_one('.playerAvatar > img')['src'] # there could be another div with an image inside this div, so we need to grab only the image which is a direct child
