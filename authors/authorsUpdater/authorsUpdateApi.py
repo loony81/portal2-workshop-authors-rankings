@@ -86,7 +86,14 @@ def update_authors_authortemp_table():
             if followers > 10 and submissions > 0:
                 personaname = soup.select_one('#HeaderUserInfoName a').text
                 profile_url = soup.select_one('#HeaderUserInfoName a')['href']
-                avatar = soup.select_one('.playerAvatar > img')['src'] # there could be another div with an image inside this div, so we need to grab only the image which is a direct child
+                #avatar = soup.select_one('.playerAvatar > img')['src'] # there could be another div with an image inside this div, so we need to grab only the image which is a direct child
+                avatar_element = soup.select_one('.playerAvatar img, .workshopPlayerAvatar img, .playerAvatarSizeMedium img')
+                if avatar_element and avatar_element.has_attr('src'):
+                    avatar = avatar_element['src']
+                else:
+                    # Fallback to a default Steam avatar or None so the scheduler keeps running
+                    avatar = 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/6f/6f982210fe9a377fdb74d9a836e4d670f0fd68fc.jpg'
+                
                 # in case it's an animated gif or png image, just set it equal to default avatar
                 if avatar.endswith('.gif') or avatar.endswith('.png'):
                     avatar = 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/6f/6f982210fe9a377fdb74d9a836e4d670f0fd68fc.jpg'
