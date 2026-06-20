@@ -86,7 +86,7 @@ def update_authors_authortemp_table():
             if followers > 5 and submissions > 0:
                 personaname = soup.select_one('#HeaderUserInfoName a').text
                 profile_url = soup.select_one('#HeaderUserInfoName a')['href']
-                avatar_element = soup.select_one('.playerAvatar > img') # there could be another div with an image inside this div, so we need to grab only the image which is a direct child
+                avatar_element = soup.select_one('.playerAvatar picture img')
                 #avatar_element = soup.select_one('.playerAvatar img, .workshopPlayerAvatar img, .playerAvatarSizeMedium img')
                 if avatar_element and avatar_element.has_attr('srcset'):
                     avatar = avatar_element['srcset']
