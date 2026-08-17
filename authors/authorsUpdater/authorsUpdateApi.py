@@ -39,6 +39,7 @@ def update_authors_steamid_table():
             steamgroup = SteamGroup(group.group_name)
             all_steamids.extend(steamgroup.get_steam_ids())
         all_steamids = list(set(all_steamids))  # remove duplicates
+        print(f'There are {len(all_steamids)} steamids')
         objects = [Steamid(steamid=steamid) for steamid in all_steamids]
         Steamid.objects.bulk_create(objects)
         UpdateDate.objects.update_or_create(model_name='Steamid', defaults={
