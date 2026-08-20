@@ -47,8 +47,9 @@ def update_authors_steamid_table():
             'timestamp': datetime.utcnow()
         })
         print(f'All steamids have been successfully updated! Fetched {Steamid.objects.count()} steamids')
-    except:
+    except Exception as e:
         print('The steamids update has failed!')
+        print(e)
         purge_steamids()
 
 
